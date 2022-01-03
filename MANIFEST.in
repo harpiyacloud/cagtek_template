@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include cagtek_template *.css
+recursive-include cagtek_template *.csv
+recursive-include cagtek_template *.html
+recursive-include cagtek_template *.ico
+recursive-include cagtek_template *.js
+recursive-include cagtek_template *.json
+recursive-include cagtek_template *.md
+recursive-include cagtek_template *.png
+recursive-include cagtek_template *.py
+recursive-include cagtek_template *.svg
+recursive-include cagtek_template *.txt
+recursive-exclude cagtek_template *.pyc
