@@ -1,0 +1,74 @@
+{
+ "actions": [],
+ "allow_guest_to_view": 1,
+ "allow_rename": 1,
+ "creation": "2022-01-11 16:42:07.280347",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "title",
+  "image",
+  "code",
+  "route",
+  "published"
+ ],
+ "fields": [
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Başlık",
+   "reqd": 1
+  },
+  {
+   "fieldname": "code",
+   "fieldtype": "Code",
+   "label": "E Katalog"
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "Bağlantı Adresi",
+   "read_only": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "published",
+   "fieldtype": "Data",
+   "label": "Yayınlandı"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "Katalog Resmi"
+  }
+ ],
+ "has_web_view": 1,
+ "index_web_pages_for_search": 1,
+ "is_published_field": "published",
+ "links": [],
+ "modified": "2022-01-11 19:57:11.886037",
+ "modified_by": "Administrator",
+ "module": "Cağ-Tek Template",
+ "name": "E Katalog",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "route": "title",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

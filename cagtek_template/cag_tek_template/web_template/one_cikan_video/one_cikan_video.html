@@ -1,0 +1,84 @@
+<section id="features" class="ls">
+    <div class="cover-image s-cover-left photoswipe-link-button-wrap">
+        <a href="#" class="photoswipe-link photoswipe-link-button" data-iframe="{{ video_url }}" data-index="1"></a>
+        {%- if video_image -%}
+        {{ harpiya.render_template('templates/includes/image_with_blur.html', {
+            "src": video_image,
+            "class": [""]
+            }) }}
+        {%- endif -%}
+        <div class="slogan">{{ _(subtitle) }}</div>
+    </div>
+    <div class="container">
+        <div class="col-lg-5 pull-right">
+            <div class="divider-90 divider-xl-100"></div>
+            <h2 class="special-heading">
+                <span>{{ _(title) }}</span>
+            </h2>
+            <div class="divider-50"></div>
+            <div id="accordion01" role="tablist">
+                {% if tab_1 %}
+            	<div class="card">
+                    <div class="card-header" id="collapse01_header">
+                        <h5>
+                            <a class="collapsed" href="#">
+                                {{ _(tab_1) }}
+                            </a>
+                        </h5>
+                    </div>
+
+                </div>
+                {% endif %}
+                {% if tab_2 %}
+            	<div class="card">
+                    <div class="card-header" id="collapse02_header">
+                        <h5>
+                            <a class="collapsed" href="#">
+                                {{ _(tab_2) }}
+                            </a>
+                        </h5>
+                    </div>
+
+                </div>
+                {% endif %}
+                {% if tab_3 %}
+            	<div class="card">
+                    <div class="card-header" id="collapse03_header">
+                        <h5>
+                            <a class="collapsed" href="#">
+                                {{ _(tab_3) }}
+                            </a>
+                        </h5>
+                    </div>
+
+                </div>
+                {% endif %}
+                {% if tab_4 %}
+            	<div class="card">
+                    <div class="card-header" id="collapse04_header">
+                        <h5>
+                            <a class="collapsed" href="#">
+                                {{ _(tab_4) }}
+                            </a>
+                        </h5>
+                    </div>
+
+                </div>
+                {% endif %}
+                {% if tab_5 %}
+            	<div class="card">
+                    <div class="card-header" id="collapse05_header">
+                        <h5>
+                            <a class="collapsed" href="#">
+                                {{ _(tab_5) }}
+                            </a>
+                        </h5>
+                    </div>
+
+                </div>
+                {% endif %}                                                
+            </div>
+            <div class="divider-lg-90 divider-xl-100"></div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,42 @@
+{
+ "__islocal": true,
+ "__unsaved": 1,
+ "creation": "2022-01-12 00:04:37.172859",
+ "docstatus": 0,
+ "doctype": "Web Template",
+ "fields": [
+  {
+   "__islocal": 1,
+   "__unsaved": 1,
+   "fieldname": "galeri",
+   "fieldtype": "Table Break",
+   "label": "Galeri",
+   "reqd": 0
+  },
+  {
+   "__islocal": 1,
+   "__unsaved": 1,
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Başlık",
+   "reqd": 0
+  },
+  {
+   "__islocal": 1,
+   "__unsaved": 1,
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "Resim",
+   "reqd": 0
+  }
+ ],
+ "idx": 0,
+ "modified": "2022-01-12 00:04:37.172859",
+ "modified_by": "Administrator",
+ "module": "Cağ-Tek Template",
+ "name": "Resim Galerisi",
+ "owner": "Administrator",
+ "standard": 1,
+ "template": "",
+ "type": "Section"
+}

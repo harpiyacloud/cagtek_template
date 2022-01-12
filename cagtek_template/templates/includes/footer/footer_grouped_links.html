@@ -1,0 +1,30 @@
+<div class="col-12">
+    <div class="divider-xl-80"></div>
+</div>
+
+{% for group in footer_items if group.child_items %}
+    {# 2 columns to every 5 links, so 5 links get 2 columns, 5-10 links get 4 columns, and so on #}
+    {%- set cols = harpiya.utils.ceil((group.child_items | len) / 5) * 2 -%}
+    <div class="col-md-6 col-xl-{{ cols }}">
+        <div class="widget widget_nav_menu">
+            <h3 class="widget-title">{{ _(group.label) }}</h3>
+            <div class="menu-container">
+                <ul class="menu">
+                    {%- for child in group.child_items -%}
+                        <li class="menu-item" data-label="{{ _(child.label) }}">
+                            <a href="{{ child.url | abs_url }}"
+                                    {% if child.open_in_new_tab %} target="_blank" {% endif %}  rel="noreferrer">
+                                {%- if child.icon -%}
+                                    <img src="{{ child.icon }}" alt="{{ child.label }}">
+                                {%- else -%}
+                                    {{ _(child.label) }}
+                                {%- endif -%}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="divider-60 divider-xl-0"></div>
+    </div>
+{% endfor %}

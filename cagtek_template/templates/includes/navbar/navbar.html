@@ -1,0 +1,84 @@
+<header class="header header-one">
+    <div class="top-header-one top-bar">
+        <div class="container">
+            <div class="top-bar-inner">
+                <div class="top-left">
+                    <ul>
+                        {% if contacts.phone %}
+                        <li>{{ _('Telefon') }}: <a href="tel:{{ contacts.phone }}">{{ contacts.phone }}</a></li>
+                        {% endif %}
+                        {% if contacts.email_id %}
+                        <li>{{ _('E-posta') }}: <a href="mailto:{{ contacts.email_id }}">{{ contacts.email_id }}</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="top-right">
+                    <ul class="top-social">
+                        <li class="form-group mb-0 hide" id="language-switcher">
+                            <select class="form-control text-white"></select>
+                        </li>
+                        {% if contacts.whatsapp %}
+                        <li><a href="{{ contacts.whatsapp }}" target="_blank"><i class="fa fa-whatsapp"></i></a></li>
+                        {% endif %}
+                        {% if contacts.telegram %}
+                        <li><a href="{{ contacts.telegram }}" target="_blank"><i class="fa fa-telegram"></i></a></li>
+                        {% endif %}
+                        {% if contacts.facebook %}
+                        <li><a href="{{ contacts.facebook }}" target="_blank"><i class="fa fa-facebook-f"></i></a></li>
+                        {% endif %}
+                        {% if contacts.twitter %}
+                        <li><a href="{{ contacts.twitter }}" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                        {% endif %}
+                        {% if contacts.instagram %}
+                        <li><a href="{{ contacts.instagram }}" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                        {% endif %}
+                        {% if contacts.linkedin %}
+                        <li><a href="{{ contacts.linkedin }}" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                        {% endif %}
+                        {% if contacts.pinterest %}
+                        <li><a href="{{ contacts.pinterest }}" target="_blank"><i class="fa fa-pinterest"></i></a></li>
+                        {% endif %}
+                        {% if contacts.youtube %}
+                        <li><a href="{{ contacts.youtube }}" target="_blank"><i class="fa fa-youtube"></i></a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.top-bar -->
+    <div class="primary-header-one primary-header">
+        <div class="container">
+            <div class="primary-header-inner">
+                <div class="header-logo">
+                    <a href="{{ url_prefix }}{{ home_page or "/" }}">
+                        <img src="/assets/cagtek_template/images/cagtek-logo.png" alt="Logo"/>
+                    </a>
+                </div><!-- /.header-logo -->
+                <div class="header-menu-wrap">
+                    {% include "templates/includes/navbar/navbar_items.html" %}
+                </div><!-- /.header-menu-wrap -->
+                <div class="header-right">
+                    {% include "templates/includes/navbar/navbar_search.html" %}
+                    <a class="header-btn" href="/e-catalog">{{ _("E-Katalog") }}<span></span></a>
+                    <!-- Burger menu -->
+                    <div class="mobile-menu-icon">
+                        <div class="burger-menu">
+                            <div class="line-menu line-half first-line"></div>
+                            <div class="line-menu"></div>
+                            <div class="line-menu line-half last-line"></div>
+                        </div>
+                    </div>
+                </div><!-- /.header-right -->
+            </div><!-- /.primary-header-one-inner -->
+        </div>
+    </div><!-- /.primary-header-one -->
+</header><!-- /.header-one -->
+
+<div id="dl-popup-search-box">
+    <div class="box-inner-wrap d-flex align-items-center">
+        <form id="form" action="#" method="get" role="search">
+            <input id="popup-search" type="text" name="s" placeholder="Ne aramıştınız..." />
+            <button id="popup-search-button" type="submit" name="submit"><i class="las la-search"></i></button>
+        </form>
+    </div>
+</div><!-- /#dl-popup-search-box -->

@@ -1,0 +1,13 @@
+{%- if web_template_type == 'Section' -%}
+{%- if not web_block.hide_block -%}
+	{%- if web_block.add_container -%}
+	<div class="container">
+	{%- endif -%}
+		{{ web_template_html }}
+	{%- if web_block.add_container -%}
+	</div>
+	{%- endif -%}
+{%- endif -%}
+{%- else -%}
+{{ web_template_html }}
+{%- endif -%}

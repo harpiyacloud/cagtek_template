@@ -1,0 +1,145 @@
+{% extends "templates/web.html" %}
+
+{% block title %}{{ title or _("Ürünler") }}{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="/assets/cagtek_template/css/shop.css">
+    <link rel="stylesheet" href="/assets/cagtek_template/css/tailwind.css">
+    <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css" />
+{% endblock %}
+
+{% block page_content %}
+    <section class="ls s-py-90 s-py-xl-150">
+        <div class="bg-white">
+            <div class="pt-6">
+                <!-- Product info -->
+                <div
+                        class="max-w-2xl mx-auto pt-10 pb-16 px-4 sm:px-6 lg:max-w-7xl lg:pt-16 lg:pb-24 lg:px-8 lg:grid lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8">
+                    <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
+                    </div>
+                    <!-- Options -->
+                    <div class="lg:mt-0 lg:row-span-3">
+                        <h2 class="sr-only" style="color: #2d3545;">{{ _('Ürün Bilgileri') }}</h2>
+                        <div class="summary entry-summary">
+                            {% if pdf_catalog %}
+                            <div class="single_variation_wrap">
+                                <div class="mt-10">
+                                    <a href="{{ pdf_catalog }}" target="_blank" class="btn btn-warning">{{ _('PDF Katalog
+                                        İndir') }}</a>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            <div class="product_meta mt-10">
+										<span class="sku_wrapper"><strong style="color: #2d3545;">{{ _('Ürün Kodu') }}:</strong>
+											<span class="sku" style="color: #2d3545;">{{ code }}</span>
+										</span><br>
+                                <span class="posted_in" style="color: #2d3545;"><strong
+                                        style="color: #2d3545;">{{ _('Kategori') }}:</strong> <a href="#" rel="tag"
+                                                                                      style="color: #2d3545;">{{ product_category.title }}</a>
+										</span><br>
+                            </div>
+
+                        </div>
+                        <form class="mt-10">
+                            <!-- Colors -->
+                            {% if dolap_variant %}
+                            <div>
+
+                                <h3 class="text-md text-black font-medium" style="color: #2d3545;">{{ _('Dolap - Renk Kartelası') }}</h3>
+                                    {% for i in dolap_variant %}
+                                        <div id="dolap-variant-{{ i.idx }}" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                            {{ _(i.title) }}
+                                            <div class="tooltip-arrow" data-popper-arrow></div>
+                                        </div>
+                                {% endfor %}
+                                <fieldset class="mt-4">
+                                    {% for items in dolap_variant|batch(5) %}
+                                    <div class="flex items-center space-x-6">
+                                        {% for i in items %}
+
+                                            <div class="w-16 h-16 relative mb-4">
+                                                <div
+                                                        class="group w-full h-full rounded-full overflow-hidden shadow-inner text-center bg-purple table cursor-pointer">
+                                                    <div data-thumb="{{ i.image }}">
+                                                        <a href="{{ i.big_image }}" data-tooltip-target="dolap-variant-{{ i.idx }}" data-tooltip-style="light">
+                                                            <img src="{{ i.image }}" alt="img"
+                                                                 data-caption=""
+                                                                 class="object-cover object-center w-full h-full visible group-hover:hidden"
+                                                                 data-large_image_width="1350" data-large_image_height="1080">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                    {%- endfor %}
+                                </fieldset>
+                            </div>
+                            {% endif %}
+                            {% if aski_variant %}
+                            <div>
+                                <h3 class="text-md text-black font-medium" style="color: #2d3545;">{{ _('Askı - Renk Kartelası') }}</h3>
+                                {% for i in aski_variant %}
+                                    <div id="aski-variant-{{ i.idx }}" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                        {{ _(i.title) }}
+                                        <div class="tooltip-arrow" data-popper-arrow></div>
+                                    </div>
+                                {% endfor %}
+                                <fieldset class="mt-4">
+                                    {% for items in aski_variant|batch(5) %}
+                                    <div class="flex items-center space-x-6">
+                                        {% for i in items %}
+                                        <div class="w-16 h-16 relative mb-4">
+                                            <div
+                                                    class="group w-full h-full rounded-full overflow-hidden shadow-inner text-center bg-purple table cursor-pointer">
+														<span
+                                                                class="hidden group-hover:table-cell text-white font-bold align-middle">KR</span>
+                                                <div data-thumb="{{ i.image }}">
+                                                    <a href="{{ i.big_image }}" data-tooltip-target="aski-variant-{{ i.idx }}" data-tooltip-style="light">
+                                                        <img src="{{ i.image }}" alt="img"
+                                                             data-caption=""
+                                                             class="object-cover object-center w-full h-full visible group-hover:hidden">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    {% endfor %}
+                                </fieldset>
+                            </div>
+                            {% endif %}
+                        </form>
+                    </div>
+
+                    <div
+                            class="py-10 lg:pt-6 lg:pb-16 lg:col-start-1 lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
+                        <div class="product">
+                            <div class="product-wrap position-relative images" data-columns="4">
+                                <figure>
+                                    {% if images %}
+                                        {% for image in images %}
+                                    <div data-thumb="{{ image.image }}">
+                                        <a href="{{ image.image }}">
+                                            <img src="{{ image.image }}" alt="img" data-caption="" data-src="{{ image.image }}" data-large_image="{{ image.image }}" data-large_image_width="1000" data-large_image_height="1000">
+                                        </a>
+                                    </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </figure>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+{% endblock %}
+
+{% block script %}
+    <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
+{% endblock %}

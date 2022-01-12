@@ -9,6 +9,12 @@ app_color = "grey"
 app_email = "info@harpiya.com"
 app_license = "MIT"
 
+website_route_rules = [
+	{"from_route": "/product/<category>", "to_route": "Product"},
+	{"from_route": "/e-catalog", "to_route": "E Katalog"},
+
+]
+
 # Includes in <head>
 # ------------------
 
@@ -17,7 +23,7 @@ app_license = "MIT"
 # app_include_js = "/assets/cagtek_template/js/cagtek_template.js"
 
 # include js, css files in header of web template
-# web_include_css = "/assets/cagtek_template/css/cagtek_template.css"
+# web_include_css = "cagtek-web.bundle.css"
 # web_include_js = "/assets/cagtek_template/js/cagtek_template.js"
 
 # include custom scss in every website theme (without file extension ".scss")

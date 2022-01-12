@@ -1,0 +1,29 @@
+
+			<section class="ls about-2">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<div class="divider-50 divider-xl-60"></div>
+							<div class="collapse_shortcode">
+                                {%- for sekme in sekmeler -%}
+								<div class="collapse_shortcode-item">
+                                    {%- set collapse_id = 'id-' + harpiya.utils.generate_hash('Collapse', 12) -%}
+									<div class="collapse_shortcode-item-title">
+										<h4>
+											<a href="#multiCollapseExample{{ collapse_id }}" aria-controls="multiCollapseExample{{ collapse_id }}" data-bs-toggle="collapse" role="button" aria-expanded="false">
+												{{ _(sekme.title) }} </a>
+										</h4>
+									</div>
+									<div class="collapse_shortcode-item-content collapse multi-collapse show" id="multiCollapseExample{{ collapse_id }}">
+										<div class="content">
+											{{ harpiya.utils.md_to_html(_(sekme.content)) }}
+										</div>
+										<ul class="list"></ul>
+									</div>
+								</div>
+                                {%- endfor -%}
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>

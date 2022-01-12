@@ -1,0 +1,12 @@
+<section class="ls banner-section">
+    {% if top_title %}
+    <div class="title-custom position-relative">
+        <span class="emptytext color-darkgrey-light">{{ _(top_title) }}</span>
+    </div>
+    {% endif %}
+    {% if bottom_title %}
+    <div class="title-custom right position-relative">
+        <span class="color-darkgrey">{{ _(bottom_title) }}</span>
+    </div>
+    {% endif %}
+</section>

@@ -1,0 +1,42 @@
+{%- macro services(title, subtitle, url, image) -%}
+    <div class="mt-6 col-xl-3">
+        <div class="service-shortcode text-center ds position-relative">
+            <a href="{{ url or '#' }}">
+                <div class="cover-image image-back">
+                    {%- if image -%}
+                        {{ harpiya.render_template('templates/includes/image_with_blur.html', {
+			"src": image,
+			"class": ["h-100 d-none"]
+		}) }}
+                    {%- endif -%}
+                </div>
+                <div class="z-index-2 position-relative">
+                    <i class="ico-wind fs-64 text-white"></i>
+                    <h4 class="mt-2 mb-0 text-uppercase"><span data-content="{{ _(title) or '' }}" class="emptytext">{{ _(title) or '' }}</span>
+                    </h4>
+                    <h5 class="mt-1">{{ _(subtitle) or '' }}<span class="color-main2">.</span></h5>
+                </div>
+            </a>
+        </div>
+    </div>
+{%- endmacro -%}
+
+
+
+<section id="events" class="ls c-gutter-0 container-px-0 mt-1">
+    <div class="container-fluid">
+        <div class="row">
+                {%- for index in ['1', '2', '3', '4'] -%}
+                    {%- set title = values['services_' + index + '_title'] -%}
+                    {%- set subtitle = values['services_' + index + '_subtitle'] -%}
+                    {%- set url = values['services_' + index + '_url'] -%}
+                    {%- set image = values['services_' + index + '_image'] -%}
+                    {%- if title -%}
+                        {{ services(title, subtitle, url, image) }}
+                    {%- endif -%}
+                {%- endfor -%}
+        </div>
+</section>
+
+
+

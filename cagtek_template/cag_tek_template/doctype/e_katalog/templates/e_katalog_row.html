@@ -1,0 +1,16 @@
+<div class="vertical-item item-gallery content-absolute text-center ds">
+    <div class="item-media">
+        <img src="{{ doc.image }}" alt="{{ _(doc.title) or _(doc.name) }}">
+        <div class="media-links">
+            <div class="links-wrap">
+                <a class="link-anchor" title="{{ _(doc.title) or _(doc.name) }}" href="/{{ route }}"></a>
+            </div>
+        </div>
+    </div>
+    <div class="item-content gradientdarken-background">
+        <h4>
+            <a href="{{ route }}">{{ _(doc.title) or _(doc.name) }}</a>
+        </h4>
+    </div>
+</div>
+

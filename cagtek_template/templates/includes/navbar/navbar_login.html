@@ -1,0 +1,26 @@
+<!-- post login tools -->
+{% if not only_static %}
+	{% if harpiya.session.user != 'Guest' %}
+	<li class="logged-in" id="website-post-login" data-label="website-post-login" style="display: none">
+		<a href="#" class="nav-link nav-avatar">
+			<span class="user-image-wrapper"></span>
+		</a>
+		<ul role="menu">
+			{%- for child in post_login -%}
+			{%- if child.url -%}
+			<li><a href="{{ child.url | abs_url }}"  {% if child.open_in_new_tab %} target="_blank" {% endif %} rel="nofollow">
+				{{ child.label }}
+			</a></li>
+			{%- endif -%}
+			{%- endfor -%}
+			<li><a class="switch-to-desk hidden" href="/app">{{ _('Yönetim Paneli') }}</a></li>
+		</ul>
+	</li>
+	{% endif %}
+
+	{% if not hide_login %}
+	<li>
+		<a class="nav-link btn-login-area" href="/login">{{ _("Oturum Aç") }}</a>
+	</li>
+	{% endif %}
+{% endif %}

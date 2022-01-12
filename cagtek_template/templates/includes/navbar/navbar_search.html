@@ -1,0 +1,13 @@
+{% if navbar_search %}
+    <div class="search-icon dl-search-icon"><i class="las la-search"></i></div>
+    <div id="dl-popup-search-box">
+        <div class="box-inner-wrap d-flex align-items-center">
+            <form id="form" action="/search" method="get" role="search">
+                <input id="popup-search" type="text" name="q"
+                       value="{{ harpiya.form_dict.q or ''}}"
+                       placeholder="{{ _('Ne aramıştınız...') }}" />
+                <button id="popup-search-button" type="submit" name="submit"><i class="las la-search"></i></button>
+            </form>
+        </div>
+    </div>
+{% endif %}

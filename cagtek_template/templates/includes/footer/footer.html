@@ -1,0 +1,39 @@
+<section class="before-footer before-footer1">
+    <div class="container ">
+        <div class="row">
+            <div class="col-12 text-center text-xl-start">
+                <div class="cs">
+                    <div class="title-custom-footer">
+                        <h6 class="emptytext">24/7</h6>
+                    </div>
+                    <div class="before-footer-content d-xl-flex align-items-center">
+                        <div class="mb-4 mb-xl-0">
+                            <h5 class="special-heading mb-2">
+											<span>
+												<span class="text-white">{{ _("Sorunuz mu var?") }}</span> {{ _("Ücretsiz danışmanlık alın!") }}
+											</span>
+                            </h5>
+                            <p>{{ _("Bizimle telefon yoluyla iletişime geçebilirsiniz") }}: <a href="tel:{{ contacts.phone }}">{{ contacts.phone }}</a> {{ _("yada e-posta") }}:
+                                <a href="mailto:{{ contacts.email_id }}"><span >{{ contacts.email_id }}</span></a></p>
+                        </div>
+                        <div class="text-xl-end flex-grow-1">
+                            <a class="btn btn-white" href="/contact">{{ _("Teklif İsteyin") }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="page_footer ds ms s-py-90 s-py-xl-150 c-gutter-60 dark-gradient leaf-wrap overflow-visible">
+    <div class="container">
+        <div class="row">
+            {% if footer_items -%}
+                {% include "templates/includes/footer/footer_grouped_links.html" %}
+            {% endif %}
+            {% include "templates/includes/footer/footer_extension.html" %}
+            {% include "templates/includes/footer/footer_links.html" %}
+        </div>
+    </div>
+</footer>
+{% include "templates/includes/footer/footer_info.html" %}

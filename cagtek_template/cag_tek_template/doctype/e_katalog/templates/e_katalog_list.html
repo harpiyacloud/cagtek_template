@@ -1,0 +1,27 @@
+{% extends "templates/web.html" %}
+{% block title %}{{ title or _("Ürünler") }}{% endblock %}
+{% block hero %}{% endblock %}
+
+{% block page_content %}
+
+<section class="ls s-py-90 s-py-xl-150 c-gutter-40">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row isotope-wrapper masonry-layout c-mb-40">
+                    <div class="col-xl-4 col-sm-6 solar_panels others">
+                    {% for item in result %}
+                      {{ item }}
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block script %}
+<script src="/assets/cagtek_template/js/vendor/isotope.pkgd.min.js"></script>
+{% endblock %}
