@@ -2,12 +2,9 @@
     <div class="cover-image s-cover-left photoswipe-link-button-wrap">
         <a href="#" class="photoswipe-link photoswipe-link-button" data-iframe="{{ video_url }}" data-index="1"></a>
         {%- if video_image -%}
-        {{ harpiya.render_template('templates/includes/image_with_blur.html', {
-            "src": video_image,
-            "class": [""]
-            }) }}
+            <img src="{{ video_image }}" alt="{{ _(sub_title) }}">
         {%- endif -%}
-        <div class="slogan">{{ _(subtitle) }}</div>
+        <div class="slogan">{{ _(sub_title) }}</div>
     </div>
     <div class="container">
         <div class="col-lg-5 pull-right">
@@ -76,7 +73,7 @@
                     </div>
 
                 </div>
-                {% endif %}                                                
+                {% endif %}
             </div>
             <div class="divider-lg-90 divider-xl-100"></div>
         </div>
