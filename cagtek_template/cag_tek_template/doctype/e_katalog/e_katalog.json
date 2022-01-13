@@ -34,8 +34,9 @@
    "unique": 1
   },
   {
+   "default": "0",
    "fieldname": "published",
-   "fieldtype": "Data",
+   "fieldtype": "Check",
    "label": "Yayınlandı"
   },
   {
