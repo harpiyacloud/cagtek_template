@@ -24,6 +24,7 @@
   {
    "fieldname": "title",
    "fieldtype": "Data",
+   "in_global_search": 1,
    "in_list_view": 1,
    "label": "Başlık",
    "reqd": 1
@@ -99,7 +100,7 @@
  "index_web_pages_for_search": 1,
  "is_published_field": "published",
  "links": [],
- "modified": "2022-01-11 13:34:07.195573",
+ "modified": "2022-01-13 13:26:19.724461",
  "modified_by": "Administrator",
  "module": "Cağ-Tek Template",
  "name": "Product",
@@ -122,5 +123,6 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
- "track_changes": 1
+ "track_changes": 1,
+ "website_search_field": "title"
 }

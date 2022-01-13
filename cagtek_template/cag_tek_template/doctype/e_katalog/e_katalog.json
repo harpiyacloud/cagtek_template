@@ -34,6 +34,7 @@
    "unique": 1
   },
   {
+   "default": "1",
    "fieldname": "published",
    "fieldtype": "Data",
    "label": "Yayınlandı"
@@ -46,9 +47,8 @@
  ],
  "has_web_view": 1,
  "index_web_pages_for_search": 1,
- "is_published_field": "published",
  "links": [],
- "modified": "2022-01-11 19:57:11.886037",
+ "modified": "2022-01-13 13:27:29.409928",
  "modified_by": "Administrator",
  "module": "Cağ-Tek Template",
  "name": "E Katalog",
@@ -70,5 +70,6 @@
  "route": "title",
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "website_search_field": "title"
 }
