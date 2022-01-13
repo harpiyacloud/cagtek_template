@@ -36,6 +36,9 @@ class Product(WebsiteGenerator):
         context.dolap_variant = dolap.get({"doctype": "Product Variant Items"})
         context.aski_variant = aski.get({"doctype": "Product Variant Items"})
 
+        context.dolap = dolap
+        context.aski = aski
+
         context.images = gallery.get({"doctype": "Website Slideshow Item"})
         context.product_category = harpiya.get_doc('Product Category', self.product_category)
         context.parents = self.get_parents(context)

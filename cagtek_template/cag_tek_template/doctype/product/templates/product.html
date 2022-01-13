@@ -46,7 +46,7 @@
                             {% if dolap_variant %}
                             <div>
 
-                                <h3 class="text-md text-black font-medium" style="color: #2d3545;">{{ _('Dolap - Renk Kartelası') }}</h3>
+                                <h3 class="text-md text-black font-medium" style="color: #2d3545;">{{ _(dolap.variant_name) }}</h3>
                                     {% for i in dolap_variant %}
                                         <div id="dolap-variant-{{ i.idx }}" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
                                             {{ _(i.title) }}
@@ -62,7 +62,7 @@
                                                 <div
                                                         class="group w-full h-full rounded-full overflow-hidden shadow-inner text-center bg-purple table cursor-pointer">
                                                     <div data-thumb="{{ i.image }}">
-                                                        <a href="{{ i.big_image }}" data-tooltip-target="dolap-variant-{{ i.idx }}" data-tooltip-style="light">
+                                                        <a href="{{ dolap.variant_image }}" data-tooltip-target="dolap-variant-{{ i.idx }}" data-tooltip-style="light">
                                                             <img src="{{ i.image }}" alt="img"
                                                                  data-caption=""
                                                                  class="object-cover object-center w-full h-full visible group-hover:hidden"
@@ -79,7 +79,7 @@
                             {% endif %}
                             {% if aski_variant %}
                             <div>
-                                <h3 class="text-md text-black font-medium" style="color: #2d3545;">{{ _('Askı - Renk Kartelası') }}</h3>
+                                <h3 class="text-md text-black font-medium" style="color: #2d3545;">{{ _(aski.variant_name) }}</h3>
                                 {% for i in aski_variant %}
                                     <div id="aski-variant-{{ i.idx }}" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
                                         {{ _(i.title) }}
@@ -96,7 +96,7 @@
 														<span
                                                                 class="hidden group-hover:table-cell text-white font-bold align-middle">KR</span>
                                                 <div data-thumb="{{ i.image }}">
-                                                    <a href="{{ i.big_image }}" data-tooltip-target="aski-variant-{{ i.idx }}" data-tooltip-style="light">
+                                                    <a href="{{ aski.variant_image }}" data-tooltip-target="aski-variant-{{ i.idx }}" data-tooltip-style="light">
                                                         <img src="{{ i.image }}" alt="img"
                                                              data-caption=""
                                                              class="object-cover object-center w-full h-full visible group-hover:hidden">

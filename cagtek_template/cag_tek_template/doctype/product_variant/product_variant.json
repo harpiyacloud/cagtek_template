@@ -9,7 +9,8 @@
  "field_order": [
   "variant_name",
   "sb0",
-  "variant_items"
+  "variant_items",
+  "variant_image"
  ],
  "fields": [
   {
@@ -30,11 +31,16 @@
    "fieldtype": "Table",
    "label": "Varyant Öğeleri",
    "options": "Product Variant Items"
+  },
+  {
+   "fieldname": "variant_image",
+   "fieldtype": "Attach Image",
+   "label": "Açılır Resim"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-01-11 13:49:56.949733",
+ "modified": "2022-01-13 11:35:29.970251",
  "modified_by": "Administrator",
  "module": "Cağ-Tek Template",
  "name": "Product Variant",
