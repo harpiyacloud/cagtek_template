@@ -1,6 +1,6 @@
 {% extends "templates/web.html" %}
 
-{% set title = heading or "İletişim" %}
+{% set title = _(heading) or _("İletişim") %}
 
 {% block page_content %}
     <section class="ls ms s-py-90 s-py-xl-90">
