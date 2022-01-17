@@ -397,6 +397,22 @@
     color: #fff;
     text-decoration: none;
 }
+.top-bar .lang {}
+.top-bar .lang li{
+    display: inline-block;
+    margin-left: 13px;
+}
+.top-bar .lang li:first-child{
+    margin-left: 0;
+}
+.top-bar .lang li a{
+    color: #fff;
+    font-size: 12px;
+}
+.top-bar .lang li a:hover{
+    color: #ddd;
+}
+
 .top-bar .top-social {}
 .top-bar .top-social li{
     display: inline-block;
@@ -413,7 +429,6 @@
     color: #ddd;
 }
 @media (max-width: 767px){
-    .top-bar .top-right{ display: none; }
     .top-bar .top-left li,
     .top-bar .top-left li:first-child{ border: none; }
     .top-bar .top-left li{

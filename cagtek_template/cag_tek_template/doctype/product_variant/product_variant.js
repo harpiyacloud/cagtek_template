@@ -2,45 +2,31 @@
 
 harpiya.ui.form.on("Product Variant", {
 	refresh: (frm) => {
-		let intro = frm.doc.__islocal?
-			__("Önce adı ayarlayın ve kaydı kaydedin.") : __("Dosyaları/Bağlantıları ekleyin ve tabloya ekleyin.");
-		frm.set_intro(intro);
-
-		if (frm.is_new()) return;
-
-		frm.add_custom_button(__('Belgeden ekli resimleri getir'), () => {
+		frm.add_custom_button(__('Klasörden Resimleri Getir'), () => {
 			const d = new harpiya.ui.Dialog({
-				title: __('Resimleri Getir'),
+				title: __('Klasörden Resimleri Getir'),
 				fields: [
 					{
-						label: __('Belge Türü'),
+						label: __('Klasör Adı'),
 						fieldtype: 'Link',
-						fieldname: 'reference_doctype',
-						options: 'DocType',
-						reqd: 1
-					},
-					{
-						label: __('Adı'),
-						fieldtype: 'Dynamic Link',
-						fieldname: 'reference_name',
-						options: 'reference_doctype',
+						fieldname: 'folder',
+						options: 'File',
 						reqd: 1
 					}
 				],
 				primary_action_label: __('Tabloya Ekle'),
-				primary_action: ({ reference_doctype, reference_name }) => {
+				primary_action: ({ folder }) => {
 					harpiya.db.get_list('File', {
-						fields: ['file_url'],
+						fields: ['file_url', 'file_name'],
 						filters: {
-							attached_to_doctype: reference_doctype,
-							attached_to_name: reference_name
+							folder: folder
 						}
 					}).then(images => {
 						frm.doc.variant_items = frm.doc.variant_items || [];
 						images.forEach(image => {
-							frm.doc.variant_items.push({
-								image: image.file_url,
-							});
+							console.log(image)
+							var new_row = frm.add_child("variant_items");
+							new_row.image = image.file_url
 						});
 
 						frm.refresh_field('variant_items');
@@ -51,5 +37,5 @@ harpiya.ui.form.on("Product Variant", {
 
 			d.show();
 		})
-	}
+	},
 })

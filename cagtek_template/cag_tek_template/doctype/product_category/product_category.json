@@ -1,23 +1,28 @@
 {
  "actions": [],
  "allow_guest_to_view": 1,
+ "allow_import": 1,
  "allow_rename": 1,
- "creation": "2022-01-10 14:23:24.988847",
+ "creation": "2022-01-16 13:00:36.179481",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "title",
-  "image",
+  "column_break_2",
   "published",
+  "image",
+  "category_catalog",
   "route"
  ],
  "fields": [
   {
    "fieldname": "title",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Başlık",
-   "reqd": 1
+   "reqd": 1,
+   "unique": 1
   },
   {
    "default": "1",
@@ -38,6 +43,15 @@
    "fieldname": "image",
    "fieldtype": "Attach Image",
    "label": "Kategori Resmi"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "category_catalog",
+   "fieldtype": "Attach",
+   "label": "Kategori E-Kataloğu"
   }
  ],
  "has_web_view": 1,
@@ -45,7 +59,7 @@
  "index_web_pages_for_search": 1,
  "is_published_field": "published",
  "links": [],
- "modified": "2022-01-10 23:37:19.391520",
+ "modified": "2022-01-16 17:38:47.968967",
  "modified_by": "Administrator",
  "module": "Cağ-Tek Template",
  "name": "Product Category",
@@ -65,7 +79,10 @@
   }
  ],
  "quick_entry": 1,
+ "search_fields": "title",
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "title",
+ "track_changes": 1
 }

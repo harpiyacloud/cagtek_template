@@ -1,21 +1,24 @@
 # Copyright (c) 2021, Harpiya Software Technologies
 
 import harpiya
-from harpiya.website.website_generator import WebsiteGenerator
-from harpiya.utils import is_markdown, markdown, cint
-from harpiya.website.utils import get_comment_list
 from harpiya import _
+from harpiya.website.website_generator import WebsiteGenerator
+from harpiya.website.utils import clear_cache
+from harpiya.utils import today, cint, global_date_format, get_fullname, strip_html_tags, markdown, sanitize_html
+from math import ceil
+from harpiya.website.utils import (find_first_image, get_html_content_based_on_type,
+                                   get_comment_list)
 
 
 class Product(WebsiteGenerator):
     def validate(self):
         self.set_route()
 
-    def set_route(self):
-        """Set route from category and title if missing"""
+    @harpiya.whitelist()
+    def make_route(self):
         if not self.route:
-            self.route = '/'.join([harpiya.get_value('Product Category', self.product_category, 'route'),
-                                   self.scrub(self.title)])
+            return harpiya.db.get_value('Product Category', self.product_category,
+                                        'route') + '/' + self.scrub(self.title)
 
     def on_update(self):
         self.update_category()
@@ -23,52 +26,86 @@ class Product(WebsiteGenerator):
 
     def update_category(self):
         cnt = harpiya.db.sql("""select count(*) from `tabProduct`
-			where product_category=%s and ifnull(published,0)=1""", self.product_category)[0][0]
+            where product_category=%s and ifnull(published,0)=1""", self.product_category)[0][0]
         cat = harpiya.get_doc("Product Category", self.product_category)
         cat.product = cnt
         cat.save()
 
     def get_context(self, context):
-        gallery = harpiya.get_doc("Website Slideshow", self.images)
-        dolap = harpiya.get_doc("Product Variant", self.dolap_variant)
-        aski = harpiya.get_doc("Product Variant", self.aski_variant)
-
-        context.dolap_variant = dolap.get({"doctype": "Product Variant Items"})
-        context.aski_variant = aski.get({"doctype": "Product Variant Items"})
-
-        context.dolap = dolap
-        context.aski = aski
-
-        context.images = gallery.get({"doctype": "Website Slideshow Item"})
-        context.product_category = harpiya.get_doc('Product Category', self.product_category)
+        context.code = self.code
+        context.category = harpiya.get_doc('Product Category', self.product_category)
         context.parents = self.get_parents(context)
 
     def get_parents(self, context):
-        return [{"title": context.product_category.title, "route": context.product_category.route}]
+        return [{"label": _("Anasayfa"), "route": "/"},
+                {"label": _("Ürünler"), "route": "/product"},
+                {"label": context.product_category, "route": context.category.route}]
 
 
 def get_list_context(context=None):
-    filters = dict(published=1)
-
-    category = harpiya.db.get_value("Product Category", {"route": harpiya.local.path})
-
-    if category:
-        filters['product_category'] = category
-
     list_context = harpiya._dict(
-        title=category or _("Ürünler"),
+        get_list=get_product_list,
+        no_breadcrumbs=False,
         hide_filters=True,
-        filters=filters,
-        category=harpiya.local.form_dict.category,
-        no_breadcrumbs=False
+        # show_search = True,
+        title=_('Ürünler')
     )
 
-    if harpiya.local.form_dict.txt:
-        list_context.blog_subtitle = _('"{0}" tarafından filtrelendi').format(harpiya.local.form_dict.txt)
+    category = harpiya.utils.escape_html(harpiya.local.form_dict.product_category or harpiya.local.form_dict.category)
+    if category:
+        category_title = get_product_category(category)
+        list_context.sub_title = _("Posts filed under {0}").format(category_title)
+        list_context.title = category_title
+
+    elif harpiya.local.form_dict.txt:
+        list_context.sub_title = _('Filtered by "{0}"').format(sanitize_html(harpiya.local.form_dict.txt))
+
+    if list_context.sub_title:
+        list_context.parents = [{"label": _("Anasayfa"), "route": "/"},
+                                {"label": _("Ürünler"), "route": "/product"}]
+    else:
+        list_context.parents = [{"label": _("Anasayfa"), "route": "/"}]
 
     return list_context
 
 
-def clear_cache():
-    from harpiya.website.utils import clear_cache
-    clear_cache()
+def get_product_category(route):
+    return harpiya.db.get_value("Product Category", {"name": route}, "title") or route
+
+
+def get_product_list(doctype, txt=None, filters=None, limit_start=0, limit_page_length=20, order_by=None):
+    conditions = []
+    category = filters.product_category or harpiya.utils.escape_html(
+        harpiya.local.form_dict.product_category or harpiya.local.form_dict.category)
+
+    if category:
+        conditions.append('t1.product_category=%s' % harpiya.db.escape(category))
+
+    if txt:
+        conditions.append('(t1.content like {0} or t1.title like {0}")'.format(harpiya.db.escape('%' + txt + '%')))
+
+    if conditions:
+        harpiya.local.no_cache = 1
+
+    query = """\
+        select
+            t1.title, t1.name, t1.product_category, t1.route,
+                t1.code as code,
+                t1.product_image as product_image
+        from `tabProduct` t1
+        where ifnull(t1.published,0)=1
+        %(condition)s
+        order by name asc
+        limit %(page_len)s OFFSET %(start)s""" % {
+        "start": limit_start, "page_len": limit_page_length,
+        "condition": (" and " + " and ".join(conditions)) if conditions else ""
+    }
+
+    products = harpiya.db.sql(query, as_dict=1)
+
+    for product in products:
+        product.product_image = product.product_image
+        product.category = harpiya.db.get_value('Product Category', product.product_category,
+                                             ['name', 'route', 'title'], as_dict=True)
+
+    return products

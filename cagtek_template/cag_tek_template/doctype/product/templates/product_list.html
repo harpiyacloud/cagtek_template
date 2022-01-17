@@ -15,15 +15,19 @@
                         </div>
                     </div>
                 {% else %}
-                    <div class="col-md-12 result">
-                        <div class="row">
+                    <div class="col-md-12">
+                        <div class="row result">
                             {% for item in result %}
                                 {{ item }}
                             {% endfor %}
                         </div>
                     </div>
                 {% endif %}
-                <button class="btn btn-light btn-more btn {% if not show_more -%} hidden {%- endif %}">{{ _("Daha fazla") }}</button>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-2 mt-10">
+                    <button class="btn btn-light btn-more btn {% if not show_more -%} hidden {%- endif %}">{{ _("Daha fazla") }}</button>
+                </div>
             </div>
         </div>
     </section>
@@ -37,20 +41,22 @@
             let result_wrapper = $(".website-list .result");
             let next_start = {{ next_start or 0 }};
 
-            $(".website-list .btn-more").on("click", function() {
+            $(".website-list .btn-more").on("click", function () {
                 let $btn = $(this);
                 let args = $.extend(harpiya.utils.get_query_params(), {
                     doctype: "Product",
-                    category: "{{ harpiya.form_dict.product_category or '' }}",
+                    category: "{{ harpiya.form_dict.category or '' }}",
                     limit_start: next_start,
                     pathname: location.pathname,
                 });
+
                 $btn.prop("disabled", true);
                 harpiya.call('harpiya.www.list.get', args)
                     .then(r => {
+                        console.log(r)
                         var data = r.message;
                         next_start = data.next_start;
-                        $.each(data.result, function(i, d) {
+                        $.each(data.result, function (i, d) {
                             $(d).appendTo(result_wrapper);
                         });
                         toggle_more(data.show_more);

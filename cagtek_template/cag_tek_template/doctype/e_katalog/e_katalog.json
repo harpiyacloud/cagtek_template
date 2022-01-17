@@ -11,7 +11,7 @@
   "image",
   "code",
   "route",
-  "published"
+  "yayinlandi"
  ],
  "fields": [
   {
@@ -19,7 +19,8 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Başlık",
-   "reqd": 1
+   "reqd": 1,
+   "unique": 1
   },
   {
    "fieldname": "code",
@@ -34,21 +35,22 @@
    "unique": 1
   },
   {
-   "default": "1",
-   "fieldname": "published",
-   "fieldtype": "Data",
-   "label": "Yayınlandı"
-  },
-  {
    "fieldname": "image",
    "fieldtype": "Attach Image",
    "label": "Katalog Resmi"
+  },
+  {
+   "default": "1",
+   "fieldname": "yayinlandi",
+   "fieldtype": "Check",
+   "label": "Yayınlandı"
   }
  ],
  "has_web_view": 1,
  "index_web_pages_for_search": 1,
+ "is_published_field": "yayinlandi",
  "links": [],
- "modified": "2022-01-13 13:27:29.409928",
+ "modified": "2022-01-14 14:37:40.024555",
  "modified_by": "Administrator",
  "module": "Cağ-Tek Template",
  "name": "E Katalog",
@@ -71,5 +73,6 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
+ "track_changes": 1,
  "website_search_field": "title"
 }

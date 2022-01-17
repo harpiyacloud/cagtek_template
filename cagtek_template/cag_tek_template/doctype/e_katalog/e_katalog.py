@@ -27,6 +27,7 @@ def get_list_context(context):
     context.show_sidebar = False
     context.title = _("E-Katalog")
     context.no_breadcrumbs = False
+    context.parents = [{"label": _("Anasayfa"), "route": "/"}]
 
 
 def clear_cache():

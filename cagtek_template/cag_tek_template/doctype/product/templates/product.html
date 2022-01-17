@@ -19,20 +19,34 @@
                     </div>
                     <!-- Options -->
 
-
                     <div
                             class="py-10 lg:pt-6 lg:pb-16 lg:col-start-1 lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
                         <div class="product">
                             <div class="product-wrap position-relative images" data-columns="4">
                                 <figure>
-                                    {% if images %}
-                                        {% for image in images %}
-                                    <div data-thumb="{{ image.image }}">
-                                        <a href="{{ image.image }}">
-                                            <img src="{{ image.image }}" alt="img" data-caption="" data-src="{{ image.image }}" data-large_image="{{ image.image }}" data-large_image_width="1000" data-large_image_height="1000">
-                                        </a>
-                                    </div>
-                                        {% endfor %}
+                                    {% if images or product_image %}
+                                        {% if images and images|length > 2%}
+                                            {% for image in images %}
+                                                <div data-thumb="{{ image.image }}">
+                                                    <a href="{{ image.image }}">
+                                                        <img src="{{ image.image }}" alt="img" data-caption="" data-src="{{ image.image }}" data-large_image="{{ image.image }}" data-large_image_width="1000" data-large_image_height="1000">
+                                                    </a>
+                                                </div>
+                                            {% endfor %}
+                                        {% else  %}
+                                            {%- set res = harpiya.utils.get_thumbnail_base64_for_image(product_image) if product_image else false -%}
+                                            <div data-thumb="{{ product_image }}">
+                                                <a href="{{ product_image }}">
+                                                    <img src="{{ product_image }}" alt="img" data-caption="" data-src="{{ product_image }}" data-large_image="{{ product_image }}" data-large_image_width="{{ res['width'] }}" data-large_image_height="{{ res['height'] }}">
+                                                </a>
+                                            </div>
+                                        {% endif %}
+                                    {% else %}
+                                       <div data-thumb="{{ image.image }}">
+                                            <a href="{{ image.image }}">
+                                                <img src="{{ image.image }}" alt="img" data-caption="" data-src="{{ image.image }}" data-large_image="{{ image.image }}" data-large_image_width="1000" data-large_image_height="1000">
+                                            </a>
+                                        </div>
                                     {% endif %}
                                 </figure>
                             </div>
@@ -58,7 +72,7 @@
 										</span><br>
                                 <span class="posted_in" style="color: #2d3545;"><strong
                                         style="color: #2d3545;">{{ _('Kategori') }}:</strong> <a href="#" rel="tag"
-                                                                                      style="color: #2d3545;">{{ product_category.title }}</a>
+                                                                                      style="color: #2d3545;">{{ category.title }}</a>
 										</span><br>
                             </div>
 

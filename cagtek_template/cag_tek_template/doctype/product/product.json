@@ -1,24 +1,27 @@
 {
  "actions": [],
  "allow_guest_to_view": 1,
+ "allow_import": 1,
  "allow_rename": 1,
- "creation": "2022-01-10 14:32:49.965783",
+ "creation": "2022-01-16 13:00:35.617070",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "ürün_bilgileri_section",
-  "published",
   "title",
   "product_category",
   "code",
-  "route",
-  "column_break_6",
+  "column_break_3",
+  "published",
   "product_image",
-  "pdf_catalog",
-  "images",
+  "route",
+  "kartela_section",
   "dolap_variant",
-  "aski_variant"
+  "column_break_11",
+  "aski_variant",
+  "section_break_11",
+  "images"
  ],
  "fields": [
   {
@@ -33,6 +36,7 @@
    "fieldname": "product_category",
    "fieldtype": "Link",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Kategori",
    "options": "Product Category",
    "reqd": 1
@@ -48,19 +52,7 @@
    "fieldname": "route",
    "fieldtype": "Data",
    "label": "Yönlendirme",
-   "read_only": 1,
    "unique": 1
-  },
-  {
-   "fieldname": "pdf_catalog",
-   "fieldtype": "Attach",
-   "label": "PDF Katalog"
-  },
-  {
-   "fieldname": "images",
-   "fieldtype": "Link",
-   "label": "Resim Galerisi",
-   "options": "Website Slideshow"
   },
   {
    "default": "1",
@@ -75,12 +67,8 @@
   },
   {
    "fieldname": "ürün_bilgileri_section",
-   "fieldtype": "Section Break",
+   "fieldtype": "Tab Break",
    "label": "Ürün Bilgileri"
-  },
-  {
-   "fieldname": "column_break_6",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "dolap_variant",
@@ -93,6 +81,30 @@
    "fieldtype": "Link",
    "label": "Askı - Renk Kartelası",
    "options": "Product Variant"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "images",
+   "fieldtype": "Table",
+   "label": "Resimler",
+   "options": "Product Image Item"
+  },
+  {
+   "fieldname": "section_break_11",
+   "fieldtype": "Section Break",
+   "label": "Ürün Resimleri"
+  },
+  {
+   "fieldname": "kartela_section",
+   "fieldtype": "Section Break",
+   "label": "Kartela"
+  },
+  {
+   "fieldname": "column_break_11",
+   "fieldtype": "Column Break"
   }
  ],
  "has_web_view": 1,
@@ -100,7 +112,7 @@
  "index_web_pages_for_search": 1,
  "is_published_field": "published",
  "links": [],
- "modified": "2022-01-13 13:26:19.724461",
+ "modified": "2022-01-17 12:54:49.152334",
  "modified_by": "Administrator",
  "module": "Cağ-Tek Template",
  "name": "Product",
@@ -120,9 +132,12 @@
   }
  ],
  "route": "product",
+ "search_fields": "title",
+ "show_name_in_global_search": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
+ "title_field": "title",
  "track_changes": 1,
  "website_search_field": "title"
 }
