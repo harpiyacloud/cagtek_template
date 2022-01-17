@@ -32,14 +32,26 @@ class Product(WebsiteGenerator):
         cat.save()
 
     def get_context(self, context):
-        context.code = self.code
+        dolap = harpiya.get_doc("Product Variant", self.dolap_variant) if self.dolap_variant else ""
+        aski = harpiya.get_doc("Product Variant", self.aski_variant) if self.aski_variant else ""
+
+        if dolap:
+            context.dolap_variant = dolap.get({"doctype": "Product Variant Items"})
+            context.dolap = dolap
+        if aski:
+            context.aski_variant = aski.get({"doctype": "Product Variant Items"})
+            context.aski = aski
+
+        context.images = harpiya.get_all("Product Image Item", filters=dict(parent=self.name), fields=['image'])
+
         context.category = harpiya.get_doc('Product Category', self.product_category)
+
         context.parents = self.get_parents(context)
 
     def get_parents(self, context):
         return [{"label": _("Anasayfa"), "route": "/"},
                 {"label": _("Ürünler"), "route": "/product"},
-                {"label": context.product_category, "route": context.category.route}]
+                {"label": get_product_category(context.product_category), "route": context.category.route}]
 
 
 def get_list_context(context=None):
@@ -106,6 +118,6 @@ def get_product_list(doctype, txt=None, filters=None, limit_start=0, limit_page_
     for product in products:
         product.product_image = product.product_image
         product.category = harpiya.db.get_value('Product Category', product.product_category,
-                                             ['name', 'route', 'title'], as_dict=True)
+                                                ['name', 'route', 'title'], as_dict=True)
 
     return products
