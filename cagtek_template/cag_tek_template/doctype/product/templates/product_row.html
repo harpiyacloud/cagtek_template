@@ -2,7 +2,11 @@
     <div class="product-loop-item">
         <div class="product-thumbnail-wrap">
             <a href="/{{ doc.route }}">
-				<img src="{{ doc.product_image }}" alt="{{ doc.name }}">
+                {% if doc.product_image %}
+				    <img src="{{ doc.product_image }}" alt="{{ doc.name }}">
+                {% else %}
+                    <img src="/assets/cagtek_template/images/no-image.svg" alt="{{ doc.name }}">
+                {% endif %}
             </a>
         </div>
     </div>
