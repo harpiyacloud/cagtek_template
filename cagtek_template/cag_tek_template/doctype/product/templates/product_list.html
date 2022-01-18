@@ -7,26 +7,28 @@
 
     <section class="ls s-py-90 s-py-xl-150 c-gutter-80" data-doctype="{{ doctype }}" data-txt="{{ txt or '[notxt]' | e }}">
         <div class="container">
-            <div class="row website-list">
-                {% if not result -%}
-                    <div class="col-md-12">
-                        <div class="text-muted" style="min-height: 300px;">
-                            {{ no_result_message or _("Henüz ürün eklenmedi") }}
+            <div class="website-list" data-doctype="{{ doctype }}" data-txt="{{ txt or '[notxt]' | e }}">
+                <div class="row">
+                    {% if not result -%}
+                        <div class="col-md-12">
+                            <div class="text-muted" style="min-height: 300px;">
+                                {{ no_result_message or _("Henüz ürün eklenmedi") }}
+                            </div>
                         </div>
-                    </div>
-                {% else %}
-                    <div class="col-md-12">
-                        <div class="row result">
-                            {% for item in result %}
-                                {{ item }}
-                            {% endfor %}
+                    {% else %}
+                        <div class="col-md-12">
+                            <div class="row result">
+                                {% for item in result %}
+                                    {{ item }}
+                                {% endfor %}
+                            </div>
                         </div>
+                    {% endif %}
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-2 mt-10">
+                        <button class="btn btn-light btn-more btn {% if not show_more -%} hidden {%- endif %}">{{ _("Daha fazla") }}</button>
                     </div>
-                {% endif %}
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-md-2 mt-10">
-                    <button class="btn btn-light btn-more btn {% if not show_more -%} hidden {%- endif %}">{{ _("Daha fazla") }}</button>
                 </div>
             </div>
         </div>
@@ -49,11 +51,10 @@
                     limit_start: next_start,
                     pathname: location.pathname,
                 });
-
                 $btn.prop("disabled", true);
                 harpiya.call('harpiya.www.list.get', args)
                     .then(r => {
-                        console.log(r)
+                        console.log(r.message)
                         var data = r.message;
                         next_start = data.next_start;
                         $.each(data.result, function (i, d) {

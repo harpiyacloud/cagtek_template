@@ -133,11 +133,6 @@
 	<script src="/assets/cagtek_template/js/vendor/jquery.flexslider-min.js"></script>
     <script src="/assets/cagtek_template/js/vendor/isotope.pkgd.min.js"></script>
     <script src="/assets/cagtek_template/js/vendor/owl.carousel.min.js"></script>
-	{%- block script %}
-		{% if colocated_js -%}
-			<script>{{ colocated_js }}</script>
-		{%- endif %}
-	{%- endblock %}
         <script src="/assets/cagtek_template/js/vendor/photoswipe.js"></script>
 	<script src="/assets/cagtek_template/js/vendor/photoswipe-ui-default.min.js"></script>
 	<script src="/assets/cagtek_template/js/vendor/jquery.marquee.min.js"></script>
@@ -147,7 +142,11 @@
 	{%- for link in web_include_js %}
 	{{ include_script(link) }}
 	{%- endfor -%}
-
+	{%- block script %}
+		{% if colocated_js -%}
+			<script>{{ colocated_js }}</script>
+		{%- endif %}
+	{%- endblock %}
 
 	<!-- csrf_token -->
 	{%- block body_include %}{{ body_include or "" }}{% endblock -%}
